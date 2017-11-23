@@ -49,6 +49,7 @@ import net.infonode.util.ArrayUtil;
 import net.infonode.util.Direction;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -2076,5 +2077,9 @@ abstract public class DockingWindow extends BasePanel {
 
   DropFilter getInsertTabDropFilter() {
     return getWindowProperties().getDropFilterProperties().getInsertTabDropFilter();
+  }
+  
+  protected Window createTopLevelComponent() {
+	return null;
   }
 }
