@@ -120,6 +120,10 @@ public class FloatingWindow extends DockingWindow {
   };
 
   FloatingWindow(RootWindow rootWindow) {
+	  this(rootWindow, null);
+  }
+  
+  FloatingWindow(RootWindow rootWindow, DockingWindow window) {
     super(new FloatingWindowItem());
 
     getFloatingWindowProperties().addSuperObject(rootWindow.getRootWindowProperties().getFloatingWindowProperties());
@@ -128,16 +132,22 @@ public class FloatingWindow extends DockingWindow {
     shapedPanel = new ShapedPanel();
     setComponent(shapedPanel);
 
-    Component c = rootWindow.getTopLevelComponent();
-    dialog = getFloatingWindowProperties().getUseFrame() ? (Window) new JFrame() :
-             (Window) (c instanceof Frame ? new JDialog((Frame) c) : new JDialog((Dialog) c));
+    if (window != null) {
+      dialog = window.createTopLevelComponent();
+    }
+    if (dialog == null) {
+      Component c = rootWindow.getTopLevelComponent();
+      dialog = getFloatingWindowProperties().getUseFrame() ? (Window) new JFrame() :
+                 (Window) (c instanceof Frame ? new JDialog((Frame) c) : new JDialog((Dialog) c));
+
+      if (dialog instanceof JDialog)
+        ((JDialog) dialog).setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+      else
+        ((JFrame) dialog).setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+    }
+    
     ((RootPaneContainer) dialog).getContentPane().add(this, BorderLayout.CENTER);
-
-    if (dialog instanceof JDialog)
-      ((JDialog) dialog).setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-    else
-      ((JFrame) dialog).setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-
+    
     dialog.addWindowListener(new WindowAdapter() {
       public void windowClosing(WindowEvent e) {
         try {
@@ -191,7 +201,7 @@ public class FloatingWindow extends DockingWindow {
   }
 
   FloatingWindow(RootWindow rootWindow, DockingWindow window, Point p, Dimension internalSize) {
-    this(rootWindow);
+    this(rootWindow, window);
     setWindow(window);
     setInternalSize(internalSize);
     dialog.setLocation(p.x, p.y);
