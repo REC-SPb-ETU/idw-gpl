@@ -47,6 +47,12 @@
 		</plugins>
 	</build>
 	
+	<scm>
+        <connection>scm:git:https://github.com/REC-SPb-ETU/idw-gpl.git</connection>
+        <developerConnection>scm:git:https://github.com/REC-SPb-ETU/idw-gpl.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+	
 	<distributionManagement>
         <snapshotRepository>
             <id>snapshots</id>
