@@ -48,8 +48,8 @@
 	</build>
 	
 	<scm>
-        <connection>scm:git:https://github.com/REC-SPb-ETU/idw-gpl.git</connection>
-        <developerConnection>scm:git:https://github.com/REC-SPb-ETU/idw-gpl.git</developerConnection>
+        <connection>scm:git:git://github.com/REC-SPb-ETU/idw-gpl.git</connection>
+        <developerConnection>scm:git:git://github.com/REC-SPb-ETU/idw-gpl.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 	
