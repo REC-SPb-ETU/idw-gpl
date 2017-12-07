@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.infonode</groupId>
 	<artifactId>idw-gpl</artifactId>
-	<version>1.7.0</version>
+	<version>1.7.1-SNAPSHOT</version>
 	<name>InfoNode Docking Windows</name>
 
 	<description>InfoNode Docking Windows is a pure Java Swing based docking windows framework.</description>
