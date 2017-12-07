@@ -46,4 +46,19 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<distributionManagement>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <uniqueVersion>false</uniqueVersion>
+            <name>Snapshot Repository</name>
+            <url>http://nexus.nic.etu:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+
+        <repository>
+            <id>releases</id>
+            <name>Release Repository</name>
+            <url>http://nexus.nic.etu:8081/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
 </project>
