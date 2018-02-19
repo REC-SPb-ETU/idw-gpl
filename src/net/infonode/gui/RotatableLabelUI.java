@@ -72,7 +72,7 @@ public class RotatableLabelUI extends BasicLabelUI {
     if (icon == null && text == null)
       return;
 
-    FontMetrics fm = g.getFontMetrics();
+    FontMetrics fm = label.getFontMetrics(label.getFont());
     Insets insets = c.getInsets();
 
     paintViewR.x = insets.left;
