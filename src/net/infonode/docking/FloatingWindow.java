@@ -474,17 +474,25 @@ public class FloatingWindow extends DockingWindow {
       titleUpdater = new Runnable() {
         public void run() {
           if (dialog != null) {
-            if (dialog instanceof Dialog)
-              ((Dialog) dialog).setTitle(window == null ? "" : window.getTitle());
-            else
-              ((Frame) dialog).setTitle(window == null ? "" : window.getTitle());
+            String newTitle = window == null ? "" : window.getTitle();
+            if (dialog instanceof Dialog) {
+              String oldTitle = ((Dialog) dialog).getTitle();
+              if (newTitle == null || !newTitle.equals(oldTitle)) {
+                ((Dialog) dialog).setTitle(newTitle);
+              }
+            } else {
+              String oldTitle = ((Frame) dialog).getTitle();
+              if (newTitle == null || !newTitle.equals(oldTitle)) {
+                ((Frame) dialog).setTitle(newTitle);
+              }
+            }
           }
 
           titleUpdater = null;
         }
       };
 
-      SwingUtilities.invokeLater(titleUpdater);
+      titleUpdater.run();
     }
   }
 
